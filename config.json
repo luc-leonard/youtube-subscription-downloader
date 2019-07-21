@@ -1,3 +1,7 @@
 {
-
+  "listOfSubscriptions": ["joueurdugrenier", "dirtyBiology"],
+  "outputDir": "/home/videos/youtube/",
+  "dbPath": "ysd.db",
+  "youtubeRSSPath": "https://www.youtube.com/feeds/videos.xml?user =",
+  "pollingPeriodInMinutes": 120
 }

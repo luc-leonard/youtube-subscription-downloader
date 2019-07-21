@@ -1,7 +1,7 @@
 class Configuration:
 
     def getYoutubeRSSPath(self):
-        return "https: // www.youtube.com / feeds / videos.xml?user ="
+        return "https://www.youtube.com/feeds/videos.xml?user ="
 
     def getListOfSubscriptions(self):
         return ['joueurdugrenier', 'dirtybiology']
