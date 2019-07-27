@@ -19,7 +19,7 @@ class Downloader:
             links_to_download = [entry.link for entry in feed.entries if self.cache.isDownloaded(entry.link) is False]
             print(links_to_download)
             with youtube_dl.YoutubeDL({
-                'outtmpl': "./{0}/%(title)s.%(ext)s".format(kv[0])
+                'outtmpl': self.conf.getOutputDir() + "/{0}/s01e%(autonumber)03d -  %(title)s.%(ext)s".format(kv[0])
             }) as ydl:
                 ydl.download(links_to_download)
                 self.cache.update(kv[0])

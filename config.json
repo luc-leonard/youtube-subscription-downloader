@@ -1,7 +1,11 @@
 {
   "listOfSubscriptions": ["joueurdugrenier", "dirtyBiology"],
-  "outputDir": "/home/videos/youtube/",
+  "outputDir": "/mnt/d/TV_BOX/LIBRARIES/TV_SHOWS_FR",
   "dbPath": "ysd.db",
   "youtubeRSSPath": "https://www.youtube.com/feeds/videos.xml?user =",
-  "pollingPeriodInMinutes": 120
+  "pollingPeriodInMinutes": 120,
+  "plexUsername": "*****",
+  "plexPassword": "*****",
+  "plexServer": "*****",
+  "plexLibrary": "*****"
 }

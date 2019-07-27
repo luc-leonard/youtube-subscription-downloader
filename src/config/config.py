@@ -1,20 +1,38 @@
+import json
+
 class Configuration:
 
+    def __init__(self, json_file):
+        self.__dict__ = json.load(json_file)
+
     def getYoutubeRSSPath(self):
-        return "https://www.youtube.com/feeds/videos.xml?user ="
+        return self.youtubeRSSPath
 
     def getListOfSubscriptions(self):
-        return ['joueurdugrenier', 'dirtybiology']
+        return self.listOfSubscriptions
 
     def getDbPath(self):
-        return "ysd.db"
+        return self.dbPath
 
     def getPollingPeriodInMinutes(self):
-        return 10
+        return self.pollingPeriodInMinutes
 
     def getOutputDir(self):
-        return "./"
+        return self.outputDir
+
+    def getPlexUsername(self):
+        return self.plexUsername
+
+    def getPlexPassword(self):
+        return self.plexPassword
+
+    def getPlexServer(self):
+        return self.plexServer
+
+    def getPlexLibrary(self):
+        return self.plexLibrary
 
 
 def parseConfiguration(path_to_json_conf):
-    return Configuration()
+    with open(path_to_json_conf, 'r') as f:
+        return Configuration(f)

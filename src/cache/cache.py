@@ -8,10 +8,12 @@ class Cache:
         self.duration_between_refresh = conf.getPollingPeriodInMinutes() * 60
         cursor = self.db.cursor()
         cursor.execute("CREATE TABLE IF NOT EXISTS subscription_status (id varchar(255) primary key, last_updated timestamp)")
+        cursor.execute(
+            "CREATE TABLE IF NOT EXISTS downloaded_videos (id varchar(255) primary key, last_updated timestamp)")
         cursor.execute("SELECT * FROM subscription_status")
         result = cursor.fetchall()
         cursor.close()
-        print(result)
+        print("result", result)
 
     def getListOfSubscriptionToUpdate(self, subscription_list):
         return [sub for sub in subscription_list if self.shouldUpdate(sub)]
@@ -31,8 +33,18 @@ class Cache:
         cursor.close()
         self.db.commit()
 
+    def setDownloaded(self, video_id):
+        cursor = self.db.cursor()
+        cursor.execute("INSERT INTO downloaded_videos (id, last_updated) VALUES(?, ?)", [video_id, datetime.now()])
+        cursor.close()
+        self.db.commit()
+
     def isDownloaded(self, video_id):
-        return False
+        cursor = self.db.cursor()
+        cursor.execute("SELECT id FROM downloaded_videos WHERE id LIKE ?", [video_id])
+        result = cursor.fetchone()
+        cursor.close()
+        return result is not None
 
     def close(self):
         self.db.close()
